@@ -4,16 +4,16 @@ import matplotlib.pyplot as plt
 
 neural_net = DNN()
 
-neural_net.set_parameter(alpha = 0.005 , batch_size = 16 , 
+neural_net.set_parameter(alpha = 0.005 , batch_size = 32 , 
                          loss_function = neural_net.Huber_Loss,
                          delta = 1.0)
 
 init = "xavier"
 neural_net.add_layer(
-    layers.Relu(1,32,init),
-    layers.Leaky_Relu(32,32,init),
-    layers.Leaky_Relu(32,16,init),
-    layers.Linear(16,1,init)
+    layers.Relu(1,200,init),
+    layers.Leaky_Relu(200,100,init),
+    layers.Leaky_Relu(100,50,init),
+    layers.Tanh(50,1,init)
 )
 
 #Initializing data for training
@@ -43,7 +43,7 @@ Ypred = []
 for x in X:
     Ypred.append(neural_net(x)[0][0])
 
-neural_net.save(path = "../models",name = "sin_definitive")
+neural_net.save(path = "./models",name = "sin_go_horse")
 
 # Plotting the results
 plt.figure(figsize=(8, 6))

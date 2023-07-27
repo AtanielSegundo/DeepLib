@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 neural_net = DNN()
 
-neural_net.load("./models/sin_definitive")
+neural_net.load("./models/sin_definitive_model")
 
 X = np.linspace(0,2*np.pi,10000)
 Y = np.sin(X)

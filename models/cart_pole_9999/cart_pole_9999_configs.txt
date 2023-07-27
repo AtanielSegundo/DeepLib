@@ -1,0 +1,16 @@
+{
+'loss_function':self.MSE_Loss,
+'action_size':2,
+'adam':{'beta1': 0.9, 'beta2': 0.999, 'epsilon': 1e-08, 't': 52306},
+'alpha':0.005,
+'batch_size':16,
+'delta':1.0,
+'epsilon':0.11066906933997932,
+'epsilon_decay':0.9989,
+'epsilon_min':0.01,
+'gamma':0.95,
+'learn_count':908,
+'memory_size':2000,
+'state_size':4,
+'loaded':True
+}
