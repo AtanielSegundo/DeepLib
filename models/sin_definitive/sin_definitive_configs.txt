@@ -1,0 +1,8 @@
+{
+'loss_function':self.Huber_Loss,
+'adam':{'beta1': 0.9, 'beta2': 0.999, 'epsilon': 1e-08, 't': 17520},
+'alpha':0.005,
+'batch_size':16,
+'delta':1.0,
+'loaded':True
+}
