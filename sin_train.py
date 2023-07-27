@@ -12,12 +12,12 @@ init = "xavier"
 neural_net.add_layer(
     layers.Relu(1,32,init),
     layers.Leaky_Relu(32,32,init),
-    layers.Tanh(32,16,init),
+    layers.Leaky_Relu(32,16,init),
     layers.Linear(16,1,init)
 )
 
 #Initializing data for training
-X = np.linspace(0,2*np.pi,10_000)
+X = np.linspace(0,2*np.pi,20_000)
 Y = np.sin(X)
 
 #spliting data for training
@@ -25,7 +25,7 @@ Xtrain,Xtest,Ytrain,Ytest = ts(X,Y,test_size=0.3,random_state=66)
 
 train_zip = list(zip(Xtrain,Ytrain))
 #spliting data in batchs
-for epoch in (epochs:=range(40)):
+for epoch in (epochs:=range(50)):
     
     print("Epoch = ",epoch,end = "\r")
     
@@ -43,7 +43,7 @@ Ypred = []
 for x in X:
     Ypred.append(neural_net(x)[0][0])
 
-neural_net.save(path = "./models",name = "sin_definitive")
+neural_net.save(path = "../models",name = "sin_definitive")
 
 # Plotting the results
 plt.figure(figsize=(8, 6))
