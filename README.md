@@ -49,11 +49,11 @@ output_data = layer2(input_data)
 print("Saída da camada 2:")
 print(output_data)
 ```
-### DNN(Deep Neural Net):
+### DNN(Deep Neural Network):
 
 **A classe DNN permite criar redes neurais profundas.**
 
- - **Metodos:**
+- **Metodos:**
    - **_call_**
      - Metodo responsavel por fazer a propagação da entrada pela rede
      - Deve receber um vetor de entrada igual ao input size da primeira camada.
@@ -131,16 +131,42 @@ neural_net.save(path = "./models",name = f"sin_model_{acuracy}")
 
 ```
 
-O modelo treinado com estes hiperparâmetros deve aproximar a senoide com a seguinte acuracia
+O modelo treinado com estes hiperparâmetros deve aproximar a senoide com a seguinte acuracia:
 
 <p float="left">
 
+<img src="https://github.com/AtanielSegundo/DeepLib/blob/master/Figure_sin.png" width="auto" />
 
 </p>
 
-### DDQN(Double Deep Quality Net):
+### DDQN(Double Deep Q Network):
+**Classe que permite criar um agente capaz de estimar a função Q de um ambiente através da técnica DDQN.Nesta implementação de DDQN a rede principal e a rede alvo são amalgamadas.**
 
+**Está classe herda todos os metodos da classe DNN.**
 
+- **Metodos:**
+
+  - **set_parameter**:
+    - Novos hiperparâmetros são suportados para a classe DDQN.
+    - policy:
+      - Politica de Exploraçaõa x Explotação que o agente deve seguir.
+      - Por padrão a politica é a epsilon-greedy linear.
+      - politicas disponiveis:
+        - linear_epsilon_greedy
+          - o agente explore o ambiente aleatoriamente com probabilidade epsilon (ε) e escolha a ação que parece ser a melhor com probabilidade (1 - ε).
+          - indicada para ambientes onde ações individuais podem ser claramente mapeadas e enumeradas (jogos de tabuleiro, jogos de cartas, labirintos com ações de movimento, etc...).
+          - necessita de três hiperparâmetros auxiliares,epsilon,epsilon_min e epsilon_decay.
+        - exp_epsilon_greedy
+          -   uma variação da política linear epsilon-greedy. Nesta estratégia, a probabilidade de exploração (ε) é multiplicada por um fator de decaimento exponencial a cada atualização, ao invés de decair linearmente.
+          -   a taxa de redução é mais gradual à medida que o agente ganha experiência.
+          -   indicada para ambientes onde as ações possuem um espaço contínuo, como controlar a velocidade de um carro ou determinar o ângulo que um volante deve virar.
+          -   necessita de três hiperparâmetros auxiliares,epsilon,epsilon_min e epsilon_decay.
+        - Boltzman/Softmax
+          - a política Boltzmann atribui probabilidades a cada ação com base em suas estimativas de recompensa (Q-values) e uma temperatura (τ).
+          - uma temperatura alta (τ > 1) leva a uma distribuição de probabilidade mais uniforme
+          - uma temperatura baixa (τ < 1) torna a política mais determinística, favorecendo ações com recompensas Q mais altas com maior probabilidade.
+          - necessita do hiperparâmetro auxiliar temp.    
+          
 ## Sobre o Repositório
 
 ### [Exemplos](exemples)
