@@ -139,6 +139,9 @@ O modelo treinado com estes hiperparâmetros deve aproximar a senoide com a segu
 
 </p>
 
+Imagem gerada através do script [Sin Solution](https://github.com/AtanielSegundo/DeepLib/blob/master/exemples/sin_solution.py).
+
+
 ### DDQN(Double Deep Q Network):
 **Classe que permite criar um agente capaz de estimar a função Q de um ambiente através da técnica DDQN.Nesta implementação de DDQN a rede principal e a rede alvo são amalgamadas.**
 
@@ -259,7 +262,13 @@ agente.save(path = "./models",name = "cart_pole_solution")
 ```
 Após o treinamento o modelo é capaz de estabilizar o pêndulo.
 
+<p float="left">
 
+<img src="https://github.com/AtanielSegundo/DeepLib/blob/master/cartpole_solution.png" width="auto" />
+
+</p>
+
+A simulação do modelo treinado pode ser feita utilizando o script [CartPole Solution](https://github.com/AtanielSegundo/DeepLib/blob/master/exemples/cart_pole_solution.py)
 
 ## Sobre o Repositório
 
@@ -274,6 +283,7 @@ Após o treinamento o modelo é capaz de estabilizar o pêndulo.
 ### [DeepLib.py](DeepLib.py)
 
 - Script Python da biblioteca com as classes e métodos relacionados a redes neurais profundas.
+- Para que você possa utilizar de forma adequada a DeepLib é necessário que ela esteja no mesmo diretorio dos scripts
 
 ## Como Contribuir
 
@@ -291,6 +301,13 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## Contatos
 Email: 10ataniel@gmail.com
+
+## Post Scriptum
+
+**Próximas adições como algoritmos geneticos para otimização de DNN's, Redes Neurais Covolucionais e a camada/layer Softmax para problemas de classificação serão feitas.**
+
+**Feedback é bem vindo.**
+
 
 
  
