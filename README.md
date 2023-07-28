@@ -185,7 +185,7 @@ Imagem gerada através do script [Sin Solution](https://github.com/AtanielSegund
       - Metodo que atualiza os hiperparâmetros auxiliares da politica do agente.
       - Utilizado geralmente no final do laço de um episodio de treinamento do agente.
   - **memorizar**
-     - Recebe como argumento a tupla (estado,ação,recompensa,proximo_estado,flag de fim)
+     - Recebe como argumento a tupla (estado,ação,recompensa,proximo_estado,flag de fim).
      - Necessario que o vetor estado e proximo_estado tenham dimensões [1,S], sendo S a dimensão do "input_size" da primeira camada da DDQN.
      - Metodo que memoriza a tupla memoria obtida após uma interação do agente com ambiente.
      - Após terem sidos memorizados um numero de exemplos iguais o batch_size, o agente retropropaga para suas camadas os gradientes.
@@ -268,7 +268,7 @@ Após o treinamento o modelo é capaz de estabilizar o pêndulo.
 
 </p>
 
-A simulação do modelo treinado pode ser feita utilizando o script [CartPole Solution](https://github.com/AtanielSegundo/DeepLib/blob/master/exemples/cart_pole_solution.py)
+A simulação do modelo treinado pode ser feita utilizando o script [CartPole Solution](https://github.com/AtanielSegundo/DeepLib/blob/master/exemples/cart_pole_solution.py).
 
 ## Sobre o Repositório
 
@@ -283,7 +283,7 @@ A simulação do modelo treinado pode ser feita utilizando o script [CartPole So
 ### [DeepLib.py](DeepLib.py)
 
 - Script Python da biblioteca com as classes e métodos relacionados a redes neurais profundas.
-- Para que você possa utilizar de forma adequada a DeepLib é necessário que ela esteja no mesmo diretorio dos scripts
+- Para que você possa utilizar de forma adequada a DeepLib é necessário que ela esteja no mesmo diretorio dos seus scripts.
 
 ## Como Contribuir
 
