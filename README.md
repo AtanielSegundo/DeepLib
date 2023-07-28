@@ -86,6 +86,8 @@ print(output_data)
      - O método restaura a rede neural com os pesos, vieses e hiperparâmetros carregados para continuar o treinamento ou fazer previsões em novos dados.
     
 **Exemplo de uso**:
+
+Criando uma rede neural que estima a função seno.
 ```python
 from sklearn.model_selection import train_test_split as ts
 from DeepLib import *
@@ -128,6 +130,13 @@ for epoch in (epochs:=range(50)):
 neural_net.save(path = "./models",name = f"sin_model_{acuracy}")
 
 ```
+
+O modelo treinado com estes hiperparâmetros deve aproximar a senoide com a seguinte acuracia
+
+<p float="left">
+
+
+</p>
 
 ### DDQN(Double Deep Quality Net):
 
