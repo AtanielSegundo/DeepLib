@@ -146,12 +146,12 @@ O modelo treinado com estes hiperparâmetros deve aproximar a senoide com a segu
 
 - **Metodos:**
 
-  - **set_parameter**:
+  - **set_parameter**
     - Novos hiperparâmetros são suportados para a classe DDQN.
     - policy:
       - Politica de Exploraçaõa x Explotação que o agente deve seguir.
       - Por padrão a politica é a epsilon-greedy linear.
-      - politicas disponiveis:
+      - Politicas disponiveis:
         - linear_epsilon_greedy
           - o agente explore o ambiente aleatoriamente com probabilidade epsilon (ε) e escolha a ação que parece ser a melhor com probabilidade (1 - ε).
           - indicada para ambientes onde ações individuais podem ser claramente mapeadas e enumeradas (jogos de tabuleiro, jogos de cartas, labirintos com ações de movimento, etc...).
@@ -161,12 +161,106 @@ O modelo treinado com estes hiperparâmetros deve aproximar a senoide com a segu
           -   a taxa de redução é mais gradual à medida que o agente ganha experiência.
           -   indicada para ambientes onde as ações possuem um espaço contínuo, como controlar a velocidade de um carro ou determinar o ângulo que um volante deve virar.
           -   necessita de três hiperparâmetros auxiliares,epsilon,epsilon_min e epsilon_decay.
-        - Boltzman/Softmax
+        - boltzman/softmax
           - a política Boltzmann atribui probabilidades a cada ação com base em suas estimativas de recompensa (Q-values) e uma temperatura (τ).
           - uma temperatura alta (τ > 1) leva a uma distribuição de probabilidade mais uniforme
           - uma temperatura baixa (τ < 1) torna a política mais determinística, favorecendo ações com recompensas Q mais altas com maior probabilidade.
           - necessita do hiperparâmetro auxiliar temp.    
-          
+    - gamma:
+       - Determina o desconto aplicado nas recompensas futuras.
+       - É importante ajustar este hiperparâmetro para exista um equilíbrio entre recompensas imediatas e recompensas futuras.
+       - Valores de gamma próximos a 0 dão pouco valor às recompensas futuras.
+       - Valores próximos a 1 atribuem maior importância às recompensas futuras.
+    - memory_size:
+       - Um inteiro que representa o tamanho da memoria do agente.
+       - A memoria é uma fila de acesso duplo que é usada para atualizar os pessos e vieses do agente.
+       
+  -   **act**
+      - Metodo que recebe o estado do agente no ambiente e retorna o vetor com a estimativa da função Q para cada ação.
+      - Necessario que o vetor estado tenha dimensões [1,S], sendo S a dimensão do input_size da primeira camada da DDQN.
+  -   **policy_update**
+      - Metodo que atualiza os hiperparâmetros auxiliares da politica do agente.
+      - Utilizado geralmente no final do laço de um episodio de treinamento do agente.
+  - **memorizar**
+     - Recebe como argumento a tupla (estado,ação,recompensa,proximo_estado,flag de fim)
+     - Necessario que o vetor estado e proximo_estado tenham dimensões [1,S], sendo S a dimensão do "input_size" da primeira camada da DDQN.
+     - Metodo que memoriza a tupla memoria obtida após uma interação do agente com ambiente.
+     - Após terem sidos memorizados um numero de exemplos iguais o batch_size, o agente retropropaga para suas camadas os gradientes.
+     - Quando um numero de exemplos iguais a "memory_size" é adicionado as memorias a rede alvo é atualizada com os pesos e vieses da rede principal.
+
+**Exemplo de uso**:
+
+Criando um agente capaz de resolver o ambiente [Pêndulo de Carrinho](https://www.gymlibrary.dev/environments/classic_control/cart_pole/).
+
+<center>
+    <p float="left">
+        <img src="https://www.gymlibrary.dev/_images/cart_pole.gif" width="auto" />
+    </p>
+</center>
+
+```python
+from DeepLib import *
+import gym
+
+#Inicializando o ambiente
+env = gym.make("CartPole-v1")
+stt_size =  env.observation_space.shape[0]
+act_size = env.action_space.n
+#%% Montando o agente
+
+#Inicializando o agente
+agente = DDQN()
+agente.set_parameter(
+                   state_size    = stt_size,
+                   action_size   = act_size,
+                   memory_size   = 2000,
+                   alpha         = 0.005,
+                   gamma         = 0.95,
+                   policy        = agente.exp_epsilon_greedy,
+                   epsilon       = 1.0,
+                   epsilon_decay = 0.9989,
+                   epsilon_min   = 0.01,
+                   batch_size    = 16,
+                   loss_function = agente.MSE_Loss
+                   )
+agente.add_layer(         
+                layers.Relu(stt_size,32,"xavier"),
+                layers.Relu(32,32,"xavier"),
+                layers.Relu(32,16,"xavier"),
+                layers.Leaky_Relu(16,2,"xavier")
+                )
+
+#Treinando o agente
+for epoch in range(EPISODES:=2000):
+    state,_ = env.reset()
+    state = np.reshape(state, [1, stt_size])
+    for time in range(800):
+        action = agente.act(state)
+
+        next_state , reward , end , _ , _ = env.step(action)       
+
+        x,x_dot,theta,theta_dot = next_state
+        r1 = (env.x_threshold - abs(x)) / env.x_threshold - 0.8
+        r2 = (env.theta_threshold_radians - abs(theta)) / env.theta_threshold_radians - 0.5
+        reward = r1 + r2
+        next_state = np.reshape(next_state, [1, stt_size])
+
+        agente.memorizar(state,action,reward,next_state,end)
+        state = next_state
+
+        if end:
+            print(f"episode: {epoch}/{EPISODES}, score: {time}, e: {agente.epsilon}",end="\r")
+            break
+
+    agente.policy_update()
+
+env.close()
+agente.save(path = "./models",name = "cart_pole_solution")
+```
+Após o treinamento o modelo é capaz de estabilizar o pêndulo.
+
+
+
 ## Sobre o Repositório
 
 ### [Exemplos](exemples)
