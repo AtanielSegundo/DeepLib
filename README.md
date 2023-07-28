@@ -124,10 +124,13 @@ for epoch in (epochs:=range(50)):
         Ybatch = np.array(Ybatch)
         neural_net.fit(Xbatch,Ybatch,epochs = 1)
 
-#Testando a acuracia do modelo
+#Salvando o modelo treinado
 neural_net.save(path = "./models",name = f"sin_model_{acuracy}")
 
 ```
+
+### DDQN(Double Deep Quality Net):
+
 
 ## Sobre o Repositório
 
