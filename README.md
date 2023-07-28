@@ -9,44 +9,44 @@
 - **numpy**
 - **random**
 - **copy**
-- **deque**
+- **collections**
 
 ## Classes e metodos disponiveis:
 
-### layers
+### [layers](https://github.com/seu_usuario/seu_repositorio/blob/master/DeepLib.py#L7):
 
-- **Layer**: Classe abstrata que representa uma camada (layer) em uma rede neural. Possui métodos para inicialização de pesos e vieses, propagação forward e retropropagação não paramétrica.
+- **Layer**: Classe abstrata que representa uma camada (layer) em uma rede neural. Possui métodos para inicialização de pesos e vieses, propagação forward,retropropagação e metodos abstratos relativos a função de ativação e sua derivada.
 
-- **Relu**: Classe que representa a função de ativação ReLU (Rectified Linear Unit). Possui métodos para a função de ativação ReLU e sua derivada.
+- **Relu**: Classe que representa a função de ativação ReLU (Rectified Linear Unit). 
 
-- **Sigmoid**: Classe que representa a função de ativação Sigmoid. Possui métodos para a função de ativação Sigmoid e sua derivada.
+- **Sigmoid**: Classe que representa a função de ativação Sigmoid. 
 
-- **Linear**: Classe que representa a função de ativação Linear (identidade). Possui métodos para a função de ativação Linear e sua derivada.
+- **Linear**: Classe que representa a função de ativação Linear (identidade). 
 
-- **Softsign**: Classe que representa a função de ativação Softsign. Possui métodos para a função de ativação Softsign e sua derivada.
+- **Softsign**: Classe que representa a função de ativação Softsign. 
 
-- **Leaky_Relu**: Classe que representa a função de ativação Leaky ReLU. Possui métodos para a função de ativação Leaky ReLU e sua derivada.
+- **Leaky_Relu**: Classe que representa a função de ativação Leaky ReLU. 
 
-- **Tanh**: Classe que representa a função de ativação Tangente Hiperbólica (tanh). Possui métodos para a função de ativação tanh e sua derivada.
+- **Tanh**: Classe que representa a função de ativação Tangente Hiperbólica (tanh).
 
 ```python
-from DeepLib import Layer
+import numpy as np
+from DeepLib import layers
 
-input_size = 10
-output_size = 5
+input_data = np.random.rand(1,10)  # Exemplo de um vetor de entrada de tamanho 1x10
 initializer = "he"  # ou "xavier" ou "std"
-act_func = lambda x: x  # Função de ativação linear
-derivative = lambda x: 1  # Derivada da função de ativação linear
 
-layer = Layer(input_size, output_size, initializer, act_func, derivative)
+layer1 = layers.Relu(input_size=10,output_size=16,init=initializer)
+layer2 = layers.Tanh(input_size=10,output_size=32,init=initializer)
 
-# Faça a propagação forward através da camada passando um input (vetor) como argumento
-input_data = np.random.rand(1, input_size)  # Exemplo de um vetor de entrada de tamanho 1x10
-output_data = layer(input_data)
-
-print("Saída da camada:")
+print("vetor de entrada")
+print(input_data)
+output_data = layer1(input_data)
+print("Saída da camada 1:")
 print(output_data)
-
+output_data = layer2(input_data)
+print("Saída da camada 2:")
+print(output_data)
 ```
 
 ## Sobre o Repositório
