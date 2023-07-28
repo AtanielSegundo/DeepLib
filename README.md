@@ -13,7 +13,7 @@
 
 ## Classes e metodos disponiveis:
 
-### [layers](https://github.com/seu_usuario/seu_repositorio/blob/master/DeepLib.py#L7):
+### [layers](https://github.com/seu_usuario/seu_repositorio/blob/master/DeepLib.py##L7C14-L7C14):
 
 - **Layer**: Classe abstrata que representa uma camada (layer) em uma rede neural. Possui métodos para inicialização de pesos e vieses, propagação forward,retropropagação e metodos abstratos relativos a função de ativação e sua derivada.
 
