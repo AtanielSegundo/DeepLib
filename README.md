@@ -78,7 +78,7 @@ print(output_data)
    - **save**
      - Os argumentos que devem ser passados para o metodo são "path" e "name".
      - Por padrão, path = "./models" e name = "no_named".
-     - Salva as camdas do modelo e um txt com os hiperparâmetros utilizados no subdiretorio o nome "name" no diretorio "path".  
+     - Salva no subdiretorio com o nome "name" no diretorio "path" as camdas do modelo e um txt com os hiperparâmetros utilizados.  
    - **load**
      - Os argumentos que devem ser passados para o método são "path" e "load_cfg".
      - Por padrão,"load_cfg" = True.
