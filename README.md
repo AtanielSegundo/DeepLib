@@ -1,8 +1,6 @@
 # DeepLib 1.0
 
-**Uma library de machine learning leve e modular para Python 3, feita com o intuito de facilitar a implementação de redes neurais profundas.**
-
-**Disclaimer: Este projeto foi desenvolvido por um acadêmico como forma de implementar e aplicar conceitos aprendidos sobre  machine learning e programação. Embora tenham sido empregados esforços para garantir a qualidade, o projeto pode conter limitações ou erros. Use por sua conta e risco.**
+**Disclaimer: Use por sua conta e risco.**
 
 ## Dependências:
 
@@ -285,26 +283,10 @@ A simulação do modelo treinado pode ser feita utilizando o script [CartPole So
 - Script Python da biblioteca com as classes e métodos relacionados a redes neurais profundas.
 - Para que você possa utilizar de forma adequada a DeepLib é necessário que ela esteja no mesmo diretorio dos seus scripts.
 
-## Como Contribuir
-
-Se você deseja contribuir para o desenvolvimento da DeepLib, siga estas etapas:
-
-1. Faça um fork deste repositório.
-2. Crie um branch para suas alterações: `git checkout -b minha-feature`
-3. Faça suas modificações e commit: `git commit -m 'Adicionar nova feature'`
-4. Envie para o branch principal do seu fork: `git push origin minha-feature`
-5. Crie um novo Pull Request.
-
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## Contatos
-Email: 10ataniel@gmail.com
-
-## Post Scriptum
-
-**Próximas adições como algoritmos geneticos para otimização de DNN's, Redes Neurais Covolucionais e a camada/layer Softmax para problemas de classificação serão feitas.**
 
 **Feedback é bem vindo.**
 
