@@ -1,7 +1,5 @@
 # DeepLib 1.0
 
-**Disclaimer: Use por sua conta e risco.**
-
 ## Dependências:
 
 - **numpy**
